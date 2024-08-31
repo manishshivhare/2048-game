@@ -1,8 +1,11 @@
-# React + Vite
+<h1>2048 Game Application</h1>
+<a href="https://www.youtube.com/playlist?list=PLE9cyLFRZmXJ7V4EdsOZPpPGjcdDo3Tww">Part of Youtube Series</a>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h3>React JS with Hooks</h3>
+<b>How to start?</b>
+<ol>
+  <li>Download the zip folder and go to the file from the terminal</li>
+  <li>`yarn install`</li>
+  <li>`yarn start`</li>
+</ol>
