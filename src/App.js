@@ -37,7 +37,7 @@ function App() {
     
     resetGame();
 
-  }, []);
+  },1);
 
   useEffect(() => {
     const storedBest = parseInt(localStorage.getItem("best"), 10);
@@ -45,7 +45,7 @@ function App() {
       setBest(storedBest);
     }
     updateScore();
-  }, [data]);
+  }, data);
 
   const [gameOver, setGameOver] = useState(false);
 
