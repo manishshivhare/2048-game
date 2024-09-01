@@ -35,15 +35,13 @@ function App() {
 
   useEffect(() => {
     const preventDefaultSwipe = (e) => {
-      
       e.preventDefault();
     };
 
-    
-    document.addEventListener("touchmove", preventDefaultSwipe, { passive: false });
+    document.addEventListener("touchmove", preventDefaultSwipe, {
+      passive: false,
+    });
 
-    
-    
     resetGame();
     const storedBest = parseInt(localStorage.getItem("best"), 10);
     const gridData = localStorage.getItem("gridData");
@@ -51,6 +49,7 @@ function App() {
       setBest(storedBest);
     }
     setData(JSON.parse(gridData));
+    
     return () => {
       document.removeEventListener("touchmove", preventDefaultSwipe);
     };
@@ -471,7 +470,6 @@ function App() {
             onSwipeUp={() => swipeUp()}
             style={{ overflowY: "hidden" }}
             tolerance={50} // Adjust the tolerance to fine-tune sensitivity
-            
           >
             {data.map((row, oneIndex) => {
               return (
@@ -506,15 +504,15 @@ const Block = ({ num }) => {
 
 const style = {
   blockStyle: {
-    height: 65,
-    width: 65,
+    height:70,
+    width: 70,
     borderRadius: 5,
     background: "#5D9CA2",
     margin: 7,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: 45,
+    fontSize: 40,
     fontWeight: "800",
     color: "white",
   },
