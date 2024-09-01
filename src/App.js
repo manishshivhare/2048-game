@@ -37,7 +37,7 @@ function App() {
     
     resetGame();
 
-  },1);
+  },[1]);
 
   useEffect(() => {
     const storedBest = parseInt(localStorage.getItem("best"), 10);
