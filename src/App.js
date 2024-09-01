@@ -16,21 +16,32 @@ function App() {
     [0, 0, 0, 0],
   ]);
 
-  const [highestScore, setHighestScore] = useState(0);
+  const [best, setBest] = useState(0);
   const [score, setScore] = useState(0);
   const updateScore = () => {
-    var sum = 0;
+    let sum = 0;
     for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j< data[0].length; j++) {
+      for (let j = 0; j < data[0].length; j++) {
         sum += data[i][j];
       }
     }
-    setScore(sum)
-    if(sum>highestScore){
-      setHighestScore(sum)
+    setScore(sum);
+
+    if (sum > best) {
+      setBest(sum);
+      localStorage.setItem("best", sum);
     }
   };
- 
+
+  useEffect(() => {
+    const storedBest = parseInt(localStorage.getItem("best"), 10);
+    if (!isNaN(storedBest)) {
+      setBest(storedBest);
+    }
+
+    updateScore();
+  }, [data]);
+
   const [gameOver, setGameOver] = useState(false);
 
   // Initialize
@@ -45,8 +56,6 @@ function App() {
     addNumber(newGrid);
     console.table(newGrid);
     setData(newGrid);
-    
-    
   };
 
   // AddNumber - Add an item
@@ -76,7 +85,6 @@ function App() {
         // setGameOver(true);
       }
     }
-    
   };
   // Swipe Left
   const swipeLeft = (dummy) => {
@@ -118,7 +126,7 @@ function App() {
     if (JSON.stringify(oldGrid) !== JSON.stringify(newArray)) {
       addNumber(newArray);
     }
-    
+
     if (dummy) {
       return newArray;
     } else {
@@ -165,7 +173,7 @@ function App() {
     if (JSON.stringify(newArray) !== JSON.stringify(oldData)) {
       addNumber(newArray);
     }
-    
+
     if (dummy) {
       return newArray;
     } else {
@@ -211,7 +219,7 @@ function App() {
     if (JSON.stringify(b) !== JSON.stringify(oldData)) {
       addNumber(b);
     }
-    
+
     if (dummy) {
       return b;
     } else {
@@ -256,7 +264,7 @@ function App() {
     if (JSON.stringify(oldData) !== JSON.stringify(b)) {
       addNumber(b);
     }
-    
+
     if (dummy) {
       return b;
     } else {
@@ -269,7 +277,7 @@ function App() {
     console.log("CHECKING GAME OVER");
     // let original = cloneDeep(data);
     let checker = swipeLeft(true);
-    
+
     if (JSON.stringify(data) !== JSON.stringify(checker)) {
       return false;
     }
@@ -309,7 +317,6 @@ function App() {
     addNumber(emptyGrid);
     addNumber(emptyGrid);
     setData(emptyGrid);
-    
   };
 
   const handleKeyDown = (event) => {
@@ -350,13 +357,9 @@ function App() {
 
   useEffect(() => {
     initialize();
-    
+
     // eslint-disable-next-line
   }, []);
-  useEffect(() => {
-    updateScore()
-    // eslint-disable-next-line
-  }, data);
 
   // This is a custom function
   useEvent("keydown", handleKeyDown);
@@ -371,33 +374,48 @@ function App() {
           marginTop: 30,
         }}
       >
-        <div style={{ display: "flex" }}>
-          <div
-            style={{
-              fontFamily: "sans-serif",
-              flex: 1,
-              fontWeight: "700",
-              fontSize: 60,
-              color: "#776e65",
-            }}
-          >
-            {score}
-          </div>
-          <div
-            style={{
-              flex: 1,
-              marginTop: "auto",
-            }}
-          >
-            <div onClick={resetGame} style={style.newGameButton}>
-              NEW GAME
+        <div
+          style={{
+            display: "flex",
+            background: "rgb(1, 79, 94)",
+            color: "white",
+            borderRadius: 5,
+            padding: 5,
+            width: "max-content",
+          }}
+        >
+          <div style={{ display: "flex", gap: 185 }}>
+            <a
+              onClick={resetGame}
+              style={{
+                borderRadius: 5,
+                paddingTop: 9,
+                paddingBottom: 9,
+                paddingLeft: 5,
+                paddingRight: 5,
+                background: "darkcyan",
+                cursor: "pointer",
+
+                aligSelf: "center",
+              }}
+            >
+              new game
+            </a>
+            <div style={{ display: "flex", gap: 10 }}>
+              <div>
+                <div>SCORE</div>
+                <div>{score}</div>
+              </div>
+              <div>
+                <div>BEST</div>
+                <div>{best}</div>
+              </div>
             </div>
           </div>
         </div>
-
         <div
           style={{
-            background: "#AD9D8F",
+            background: "#014F5E",
             width: "max-content",
             height: "max-content",
             margin: "auto",
@@ -415,7 +433,7 @@ function App() {
                     fontSize: 30,
                     fontFamily: "sans-serif",
                     fontWeight: "900",
-                    color: "#776E65",
+                    color: "#4C7C84",
                   }}
                 >
                   Game Over
@@ -455,14 +473,6 @@ function App() {
             })}
           </Swipe>
         </div>
-
-        <div style={{ width: "inherit" }}>
-          <p class="game-explanation">
-            <strong class="important">How to play:</strong> Use your{" "}
-            <strong>arrow keys</strong> to move the tiles. When two tiles with
-            the same number touch, they <strong>merge into one!</strong>
-          </p>
-        </div>
       </div>
     </div>
   );
@@ -476,7 +486,6 @@ const Block = ({ num }) => {
       style={{
         ...blockStyle,
         background: getColors(num),
-        color: num === 2 || num === 4 ? "#645B52" : "#F7F4EF",
       }}
     >
       {num !== 0 ? num : ""}
@@ -488,8 +497,9 @@ const style = {
   blockStyle: {
     height: 80,
     width: 80,
-    background: "lightgray",
-    margin: 3,
+    borderRadius: 5,
+    background: "#5D9CA2",
+    margin: 5,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -510,7 +520,7 @@ const style = {
   },
   tryAgainButton: {
     padding: 10,
-    background: "#846F5B",
+    background: "#4C7C84",
     color: "#F8F5F0",
     width: 80,
     borderRadius: 7,

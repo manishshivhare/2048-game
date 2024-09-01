@@ -6,7 +6,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #faf8ef;
+  
+  background-image: url("../public/bg.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
 }
 
 code {
@@ -14,6 +18,5 @@ code {
     monospace;
 }
 
-.game-explanation {
-  color: #776e65;
-}
+
+

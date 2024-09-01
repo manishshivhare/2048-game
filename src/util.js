@@ -15,28 +15,28 @@ export const useEvent = (event, handler, passive = false) => {
 export const getColors = (num) => {
   switch (num) {
     case 2:
-      return "#EBDCD0";
+      return "#0A3D4C";
     case 4:
-      return "#E9DBBA";
+      return "#2A7F79";
     case 8:
-      return "#E9A067";
+      return "#74C2C3";
     case 16:
-      return "#F08151";
+      return "#4682B4";
     case 32:
-      return "#F2654F";
+      return "#7C9A92";
     case 64:
-      return "#F1462C";
+      return "#F0E68C";
     case 128:
       return "#E7C65E";
     case 256:
-      return "#E8C350";
+      return "#3E505B";
     case 512:
-      return "#E8BE40";
+      return "#A1C4D0";
     case 1024:
       return "#E8BB31";
     case 2048:
-      return "#E7B723";
+      return "#4C7C84";
     default:
-      return "#C2B3A3";
+      return "#5D9CA2";
   }
 };
