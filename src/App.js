@@ -34,31 +34,24 @@ function App() {
   };
 
   useEffect(() => {
+    
+    resetGame();
+
+  }, []);
+
+  useEffect(() => {
     const storedBest = parseInt(localStorage.getItem("best"), 10);
     if (!isNaN(storedBest)) {
       setBest(storedBest);
     }
-
     updateScore();
   }, [data]);
 
   const [gameOver, setGameOver] = useState(false);
 
-  // Initialize
-  const initialize = () => {
-    // console.log("CALLING INITIALIZE");
 
-    let newGrid = cloneDeep(data);
-    console.log(newGrid);
 
-    addNumber(newGrid);
-    console.table(newGrid);
-    addNumber(newGrid);
-    console.table(newGrid);
-    setData(newGrid);
-  };
 
-  // AddNumber - Add an item
   const addNumber = (newGrid) => {
     let added = false;
     let gridFull = false;
@@ -80,15 +73,12 @@ function App() {
         let gameOverr = checkIfGameOver();
         if (gameOverr) {
           alert("game over");
-          // setGameOver(true);
         }
-        // setGameOver(true);
       }
     }
   };
   // Swipe Left
   const swipeLeft = (dummy) => {
-    console.log("swipe left");
     let oldGrid = data;
     let newArray = cloneDeep(data);
 
@@ -135,7 +125,6 @@ function App() {
   };
 
   const swipeRight = (dummy) => {
-    console.log("swipe right");
     let oldData = data;
     let newArray = cloneDeep(data);
 
@@ -182,8 +171,6 @@ function App() {
   };
 
   const swipeDown = (dummy) => {
-    console.log("swipe down");
-    console.log(data);
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
     for (let i = 3; i >= 0; i--) {
@@ -228,7 +215,6 @@ function App() {
   };
 
   const swipeUp = (dummy) => {
-    console.log("swipe up");
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
     for (let i = 0; i < 4; i++) {
@@ -274,7 +260,6 @@ function App() {
 
   // Check Gameover
   const checkIfGameOver = () => {
-    console.log("CHECKING GAME OVER");
     // let original = cloneDeep(data);
     let checker = swipeLeft(true);
 
@@ -283,9 +268,7 @@ function App() {
     }
 
     let checker2 = swipeDown(true);
-    console.log("CHECKER DOWN");
-    console.table(data);
-    console.table(checker2);
+
     if (JSON.stringify(data) !== JSON.stringify(checker2)) {
       return false;
     }
@@ -325,25 +308,20 @@ function App() {
     }
     switch (event.keyCode) {
       case UP_ARROW:
-        // alert("up");
-        // console.table(data);
         swipeUp();
-        // console.table(data);
+
         break;
       case DOWN_ARROW:
-        // console.table(data);
         swipeDown();
-        // console.table(data);
+
         break;
       case LEFT_ARROW:
-        // console.table(data);
         swipeLeft();
-        // console.table(data);
+
         break;
       case RIGHT_ARROW:
-        // console.table(data);
         swipeRight();
-        // console.table(data);
+
         break;
       default:
         break;
@@ -354,12 +332,6 @@ function App() {
       setGameOver(true);
     }
   };
-
-  useEffect(() => {
-    initialize();
-
-    // eslint-disable-next-line
-  }, []);
 
   // This is a custom function
   useEvent("keydown", handleKeyDown);
