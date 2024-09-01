@@ -338,7 +338,7 @@ function App() {
     <div className="App">
       <div
         style={{
-          height:"100vh",
+          height:"96vh",
           margin: "auto",
           marginTop: 30,
         }}
@@ -362,31 +362,34 @@ function App() {
             display: "flex",
 
             color: "white",
-            borderRadius: 5,
+            borderRadius: 10,
             padding: 5,
             width: "max-content",
           }}
         >
-          <div style={{ display: "flex", gap: 141 }}>
-            <button
+          <div style={{ display: "flex", gap: 98 }}>
+            <span
               onClick={resetGame}
               style={{
                 fontWeight: 900,
-                borderRadius: 5,
+                borderRadius: 10,
                 paddingTop: 9,
                 paddingBottom: 9,
                 paddingLeft: 5,
                 paddingRight: 5,
-                background: "darkcyan",
+                background: "rgb(1, 79, 94)",
                 cursor: "pointer",
                 color: "white",
                 aligSelf: "center",
               }}
             >
               new game
-            </button>
+            </span>
             <div
               style={{
+                padding: "5px 20px",
+                borderRadius: 10,
+                background: "rgb(1, 79, 94)",
                 display: "flex",
                 gap: 10,
                 fontWeight: 900,
@@ -394,12 +397,12 @@ function App() {
               }}
             >
               <div>
-                <div>SCORE</div>
-                <div>{score}</div>
+                <div style={{fontSize:13}}>SCORE</div>
+                <div style={{fontSize:18}}>{score}</div>
               </div>
-              <div>
-                <div>BEST</div>
-                <div>{best}</div>
+              <div style={{opacity:0.7}}>
+                <div style={{fontSize:10, margin:"4px 0px 0px 0px"}}>BEST</div>
+                <div style={{fontSize:18}}>{best}</div>
               </div>
             </div>
           </div>
@@ -486,11 +489,11 @@ const Block = ({ num }) => {
 
 const style = {
   blockStyle: {
-    height: 70,
-    width: 70,
+    height: 65,
+    width: 65,
     borderRadius: 5,
     background: "#5D9CA2",
-    margin: 5,
+    margin: 7,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
