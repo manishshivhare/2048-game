@@ -45,7 +45,7 @@ function App() {
       setBest(storedBest);
     }
     updateScore();
-  }, data);
+  }, [data]);
 
   const [gameOver, setGameOver] = useState(false);
 
