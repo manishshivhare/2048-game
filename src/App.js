@@ -474,8 +474,8 @@ const Block = ({ num }) => {
 
 const style = {
   blockStyle: {
-    height: 80,
-    width: 80,
+    height:70,
+    width: 70,
     borderRadius: 5,
     background: "#5D9CA2",
     margin: 5,
