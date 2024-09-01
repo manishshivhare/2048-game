@@ -34,16 +34,14 @@ function App() {
   };
 
   useEffect(() => {
-    
     resetGame();
-
-  },[]);
-
-  useEffect(() => {
     const storedBest = parseInt(localStorage.getItem("best"), 10);
     if (!isNaN(storedBest)) {
       setBest(storedBest);
     }
+  },[]);
+
+  useEffect(() => {
     updateScore();
   }, [data]);
 
@@ -357,7 +355,7 @@ function App() {
           }}
         >
           <div style={{ display: "flex", gap: 185 }}>
-            <a
+            <button
               onClick={resetGame}
               style={{
                 borderRadius: 5,
@@ -367,13 +365,13 @@ function App() {
                 paddingRight: 5,
                 background: "darkcyan",
                 cursor: "pointer",
-
+                color:"white",
                 aligSelf: "center",
               }}
             >
               new game
-            </a>
-            <div style={{ display: "flex", gap: 10 }}>
+            </button>
+            <div style={{ display: "flex", gap: 10, }}>
               <div>
                 <div>SCORE</div>
                 <div>{score}</div>
