@@ -338,7 +338,7 @@ function App() {
     <div className="App">
       <div
         style={{
-          height:"96vh",
+          height: "96vh",
           margin: "auto",
           marginTop: 30,
         }}
@@ -397,12 +397,14 @@ function App() {
               }}
             >
               <div>
-                <div style={{fontSize:13}}>SCORE</div>
-                <div style={{fontSize:18}}>{score}</div>
+                <div style={{ fontSize: 13 }}>SCORE</div>
+                <div style={{ fontSize: 18 }}>{score}</div>
               </div>
-              <div style={{opacity:0.7}}>
-                <div style={{fontSize:10, margin:"4px 0px 0px 0px"}}>BEST</div>
-                <div style={{fontSize:18}}>{best}</div>
+              <div style={{ opacity: 0.7 }}>
+                <div style={{ fontSize: 10, margin: "4px 0px 0px 0px" }}>
+                  BEST
+                </div>
+                <div style={{ fontSize: 18 }}>{best}</div>
               </div>
             </div>
           </div>
@@ -455,6 +457,8 @@ function App() {
             onSwipeRight={() => swipeRight()}
             onSwipeUp={() => swipeUp()}
             style={{ overflowY: "hidden" }}
+            tolerance={50} // Adjust the tolerance to fine-tune sensitivity
+            
           >
             {data.map((row, oneIndex) => {
               return (
