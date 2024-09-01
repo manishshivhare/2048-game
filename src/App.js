@@ -338,17 +338,28 @@ function App() {
     <div className="App">
       <div
         style={{
-          
-          
           margin: "auto",
           marginTop: 30,
         }}
       >
         <div
           style={{
+            textAlign: "center",
+
+            fontFamily: "fantasy",
+            color: "white",
+
+            fontSize: 70,
+            fontWeight: 900,
+          }}
+        >
+          2048
+        </div>
+        <div
+          style={{
             margin: "10px auto auto",
             display: "flex",
-            
+
             color: "white",
             borderRadius: 5,
             padding: 5,
@@ -474,7 +485,7 @@ const Block = ({ num }) => {
 
 const style = {
   blockStyle: {
-    height:70,
+    height: 70,
     width: 70,
     borderRadius: 5,
     background: "#5D9CA2",
