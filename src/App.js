@@ -34,6 +34,16 @@ function App() {
   };
 
   useEffect(() => {
+    const preventDefaultSwipe = (e) => {
+      
+      e.preventDefault();
+    };
+
+    
+    document.addEventListener("touchmove", preventDefaultSwipe, { passive: false });
+
+    
+    
     resetGame();
     const storedBest = parseInt(localStorage.getItem("best"), 10);
     const gridData = localStorage.getItem("gridData");
@@ -41,6 +51,9 @@ function App() {
       setBest(storedBest);
     }
     setData(JSON.parse(gridData));
+    return () => {
+      document.removeEventListener("touchmove", preventDefaultSwipe);
+    };
   }, []);
 
   useEffect(() => {
