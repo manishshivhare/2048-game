@@ -355,7 +355,7 @@ function App() {
             width: "max-content",
           }}
         >
-          <div style={{ display: "flex", gap: 170 }}>
+          <div style={{ display: "flex", gap: 141 }}>
             <button
               onClick={resetGame}
               style={{
