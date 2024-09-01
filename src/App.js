@@ -36,19 +36,19 @@ function App() {
   useEffect(() => {
     resetGame();
     const storedBest = parseInt(localStorage.getItem("best"), 10);
+    const gridData = localStorage.getItem("gridData");
     if (!isNaN(storedBest)) {
       setBest(storedBest);
     }
-  },[]);
+    setData(JSON.parse(gridData));
+  }, []);
 
   useEffect(() => {
     updateScore();
+    localStorage.setItem("gridData", JSON.stringify(data));
   }, [data]);
 
   const [gameOver, setGameOver] = useState(false);
-
-
-
 
   const addNumber = (newGrid) => {
     let added = false;
@@ -338,14 +338,15 @@ function App() {
     <div className="App">
       <div
         style={{
-          height: 345,
-          width: 345,
+          height: "100vh",
+          width: "auto",
           margin: "auto",
           marginTop: 30,
         }}
       >
         <div
           style={{
+            margin: "10px auto auto",
             display: "flex",
             background: "rgb(1, 79, 94)",
             color: "white",
@@ -354,10 +355,11 @@ function App() {
             width: "max-content",
           }}
         >
-          <div style={{ display: "flex", gap: 185 }}>
+          <div style={{ display: "flex", gap: 170 }}>
             <button
               onClick={resetGame}
               style={{
+                fontWeight: 900,
                 borderRadius: 5,
                 paddingTop: 9,
                 paddingBottom: 9,
@@ -365,13 +367,20 @@ function App() {
                 paddingRight: 5,
                 background: "darkcyan",
                 cursor: "pointer",
-                color:"white",
+                color: "white",
                 aligSelf: "center",
               }}
             >
               new game
             </button>
-            <div style={{ display: "flex", gap: 10, }}>
+            <div
+              style={{
+                display: "flex",
+                gap: 10,
+                fontWeight: 900,
+                textAlign: "center",
+              }}
+            >
               <div>
                 <div>SCORE</div>
                 <div>{score}</div>
