@@ -37,6 +37,13 @@ function App() {
     const preventDefaultSwipe = (e) => {
       e.preventDefault();
     };
+    const preventArrowScroll = (event) => {
+      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener("keydown", preventArrowScroll);
 
     document.addEventListener("touchmove", preventDefaultSwipe, {
       passive: false,
@@ -49,9 +56,10 @@ function App() {
       setBest(storedBest);
     }
     setData(JSON.parse(gridData));
-    
+
     return () => {
       document.removeEventListener("touchmove", preventDefaultSwipe);
+      window.removeEventListener("keydown", preventArrowScroll);
     };
   }, []);
 
@@ -489,11 +497,13 @@ function App() {
 
 const Block = ({ num }) => {
   const { blockStyle } = style;
+  const fontSize = num >= 1000 ? "20px" : "40px";
 
   return (
     <div
       style={{
         ...blockStyle,
+        fontSize: fontSize,
         background: getColors(num),
       }}
     >
@@ -504,7 +514,7 @@ const Block = ({ num }) => {
 
 const style = {
   blockStyle: {
-    height:70,
+    height: 70,
     width: 70,
     borderRadius: 5,
     background: "#5D9CA2",
@@ -515,6 +525,9 @@ const style = {
     fontSize: 40,
     fontWeight: "800",
     color: "white",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
   },
   newGameButton: {
     padding: 10,
