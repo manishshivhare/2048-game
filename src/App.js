@@ -338,6 +338,7 @@ function App() {
     <div className="App">
       <div
         style={{
+          height:"100vh",
           margin: "auto",
           marginTop: 30,
         }}
