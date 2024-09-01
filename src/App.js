@@ -338,8 +338,8 @@ function App() {
     <div className="App">
       <div
         style={{
-          height: "100vh",
-          width: "auto",
+          
+          
           margin: "auto",
           marginTop: 30,
         }}
@@ -348,7 +348,7 @@ function App() {
           style={{
             margin: "10px auto auto",
             display: "flex",
-            background: "rgb(1, 79, 94)",
+            
             color: "white",
             borderRadius: 5,
             padding: 5,
